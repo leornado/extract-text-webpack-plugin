@@ -97,6 +97,8 @@ export function pitch(request) {
         let text = this.exec(source, request);
         if (typeof text === 'string') {
           text = [[compilation.entries[0].identifier(), text]];
+        } else if (text.__esModule) {
+          text = [[compilation.entries[0].identifier(), text['default']]];
         } else {
           text.forEach((item) => {
             const id = item[0];
